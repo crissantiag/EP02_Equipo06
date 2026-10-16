@@ -1,0 +1,9 @@
+sede_id,nombre_sede,municipio,region,latitud,longitud,deficit_total_kwh
+S01,Solar Ahuachapán,Ahuachapán,Occidente,13.9214,-89.8453,36692
+S02,Solar Santa Ana,Santa Ana,Occidente,13.9942,-89.5597,20465
+S03,Solar Sonsonate,Sonsonate,Occidente,13.7189,-89.7241,747
+S04,Solar San Salvador,San Salvador,Centro,13.6929,-89.2182,77336
+S05,Solar Santa Tecla,Santa Tecla,Centro,13.6769,-89.2797,25529
+S06,Solar Cojutepeque,Cojutepeque,Centro,13.7179,-88.9331,10909
+S07,Solar San Miguel,San Miguel,Oriente,13.4837,-88.1779,69364
+S08,Solar Usulután,Usulután,Oriente,13.35,-88.4461,3593

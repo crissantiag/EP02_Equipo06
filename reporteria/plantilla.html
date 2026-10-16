@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GreenEnergy Analytics</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 20mm 15mm 20mm 15mm;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.5;
+            font-size: 13px;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 { color: #1a5490; border-bottom: 2px solid #1a5490; padding-bottom: 5px; margin-top: 0; margin-bottom: 15px; font-size: 24px; }
+        h2 { color: #2c7bb6; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 3px; font-size: 18px; page-break-after: avoid; }
+        h3 { color: #444; margin-top: 15px; margin-bottom: 8px; font-size: 14px; page-break-after: avoid; }
+
+        .portada {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f0f7ff;
+            border-radius: 8px;
+            page-break-inside: avoid;
+        }
+        .portada h1 { border: none; font-size: 24px; margin-bottom: 5px; color: #1a5490; }
+        .portada h2 { border: none; color: #666; margin-top: 5px; font-size: 16px; margin-bottom: 15px; }
+        .portada p { margin: 4px 0; font-size: 12px; }
+
+        .kpi-grid {
+            display: table;
+            width: 100%;
+            margin: 15px 0;
+            border-spacing: 10px;
+        }
+        .kpi-row {
+            display: table-row;
+        }
+        .kpi-card {
+            display: table-cell;
+            background: #f0f7ff;
+            padding: 12px;
+            border-left: 4px solid #2c7bb6;
+            border-radius: 4px;
+            width: 33.33%;
+            vertical-align: top;
+        }
+        .kpi-valor { font-size: 20px; font-weight: bold; color: #1a5490; margin-top: 5px; }
+        .kpi-label { font-size: 11px; color: #666; text-transform: uppercase; line-height: 1.2; }
+
+        .metodologia {
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 15px 0;
+            page-break-inside: avoid;
+        }
+        .metodologia p { margin: 6px 0; }
+
+        .hallazgo {
+            background: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #ff9800;
+            margin: 15px 0;
+            border-radius: 4px;
+            page-break-inside: avoid;
+        }
+        .hallazgo h3 { margin-top: 0; color: #e65100; font-size: 15px; }
+        .hallazgo p { margin: 6px 0; }
+
+        .recomendacion-container {
+            background: #f4f7fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .lim-analisis {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #856404;
+            page-break-inside: avoid;
+        }
+
+        .conclusion-box {
+            background: #f8fafc;
+            padding: 15px;
+            border-left: 4px solid #1a5490;
+            margin: 15px 0;
+            border-radius: 4px;
+            page-break-inside: avoid;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+            page-break-inside: avoid;
+        }
+        th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; font-size: 12px; }
+        th { background: #2c7bb6; color: white; font-weight: bold; }
+        tr:nth-child(even) { background: #f9f9f9; }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            max-height: 75mm;
+            display: block;
+            margin: 15px auto;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            page-break-inside: avoid;
+        }
+
+        .pie {
+            font-size: 10px;
+            color: #999;
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+            padding-top: 8px;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+
+<div class="portada">
+    <h1>Informe Gerencial de GreenEnergy Analytics</h1>
+    <h2>GreenEnergy Analytics - El Salvador</h2>
+    <p><strong>Periodo:</strong> {{ periodo }}</p>
+    <p><strong>Fecha de generación:</strong> {{ fecha_generacion }}</p>
+    <p><strong>Versión:</strong> {{ version }}</p>
+    <p><strong>Equipo:</strong> {{ equipo }}</p>
+</div>
+
+<h2>1. Resumen Ejecutivo</h2>
+<p>El presente informe analiza el perfil de balance energético de GreenEnergy Analytics durante el periodo {{ periodo }}.
+Su propósito es apoyar la decisión de la gerencia para localizar sedes con déficit acumulado e identificar errores críticos de ubicación geográfica en el territorio nacional antes de proceder con la comunicación del mapa oficial en ArcGIS.</p>
+
+<h3>Indicadores Principales</h3>
+<div class="kpi-grid">
+    <div class="kpi-row">
+        <div class="kpi-card">
+            <div class="kpi-label">Déficit Territorial Válido Acumulado</div>
+            <div class="kpi-valor">{{ "%.2f"|format(kpis.total_ventas) }} kWh</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">Sedes con Alerta de Déficit</div>
+            <div class="kpi-valor">{{ kpis.numero_ventas }}</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">Sedes Territoriales Válidas</div>
+            <div class="kpi-valor">{{ kpis.unidades_vendidas }}</div>
+        </div>
+    </div>
+    <div class="kpi-grid" style="margin: 0; border-spacing: 10px 0;">
+        <div class="kpi-row">
+            <div class="kpi-card">
+                <div class="kpi-label">Total Nodos Censados Primarios</div>
+                <div class="kpi-valor">{{ kpis.utilidad_estimada }}</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Porcentaje de Error en Ubicación</div>
+                <div class="kpi-valor">{{ "%.1f"|format(kpis.margen_pct) }}%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Déficit Promedio por Sede Válida</div>
+                <div class="kpi-valor">{{ "%.2f"|format(kpis.ticket_promedio) }} kWh</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>2. Contexto y Metodología</h2>
+<div class="metodologia">
+    <p><strong>Fuentes utilizadas:</strong> Registro operativo diario (operacion_sedes.csv) e Inventario de coordenadas institucionales (sedes_geograficas.csv).</p>
+    <p><strong>Proceso:</strong> Conversión Coercitiva Numérica → Filtro Estricto de Plausibilidad Territorial El Salvador (Latitud 13 a 15, Longitud -91 a -87) → Aislamiento de Registros Inválidos sin alteración de datos → Agrupación por Sede y cálculo de Déficit con rectificación (.clip) → Consolidación final.</p>
+    <p><strong>Filtros aplicados:</strong> Periodo {{ periodo }}, exclusión estricta de registros fuera de los umbrales fronterizos nacionales.</p>
+</div>
+
+<h2>3. Resultados Generales</h2>
+
+<h3>Evolución del Déficit Energético</h3>
+<img src="{{ ruta_tendencia }}" alt="Tendencia del déficit energético">
+<p><strong>Lectura:</strong> Las brechas de carga muestran un comportamiento variable durante el periodo analizado, reflejando picos de demanda que superan la capacidad local de autogeneración.</p>
+
+<h2>4. Análisis Geoespacial</h2>
+<img src="{{ ruta_region }}" alt="Visualización espacial en ArcGIS">
+<p><strong>Patrón observado:</strong> La zona geográfica correspondiente a la región {{ region_top }} concentra el mayor volumen acumulado de déficit energético corporativo. La subred de la región Oriente muestra un ritmo dinámico promedio con una tasa proyectada del {{ "%.1f"|format(variacion_oriente) }}%.</p>
+<p><strong>Lectura responsable:</strong> Se detectaron inconsistencias críticas en el censo cartográfico primario. Los registros inválidos aislados se excluyeron preventivamente para mitigar distorsiones en las capas de calor espaciales de ArcGIS. El mapa no demuestra causalidad.</p>
+
+<h2>5. Hallazgos Principales</h2>
+{% for h in hallazgos %}
+<div class="hallazgo">
+    <h3>{{ loop.index }}. {{ h.titulo }}</h3>
+    <p><strong>Evidencia:</strong> {{ h.evidencia }}</p>
+    <p><strong>Interpretación:</strong> {{ h.interpretacion }}</p>
+    <p><strong>Impacto:</strong> {{ h.impacto }}</p>
+    <p><strong>Decisión sugerida:</strong> {{ h.decision }}</p>
+    <p><em>Limitación: {{ h.limitacion }}</em></p>
+</div>
+{% endfor %}
+
+<h2>6. Recomendaciones</h2>
+<div class="recomendacion-container">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Acción Técnica de Mitigación</th>
+                <th>Prioridad</th>
+                <th>Responsable</th>
+                <th>Plazo Operativo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in recomendaciones %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ r.accion }}</td>
+                <td><strong>{{ r.prioridad }}</strong></td>
+                <td>{{ r.responsable }}</td>
+                <td>{{ r.plazo }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h2>7. Limitaciones del Análisis</h2>
+<div class="lim-analisis">
+    <p><strong>[!]</strong> {{ texto_limitacion }}</p>
+</div>
+
+<h2>8. Conclusiones</h2>
+<div class="conclusion-box" style="padding: 15px;">
+    <p>El análisis integral del periodo {{ periodo }} expone una necesidad inmediata de intervención de infraestructura energética en los nodos críticos identificados. La correcta depuración de inconsistencias de localización garantiza que el mapa resultante en ArcGIS para la toma de decisiones posea un nivel de confianza absoluto.</p>
+</div>
+
+<div class="pie">
+    <p>Generado de forma automatizada por el sistema GreenEnergy Analytics.</p>
+</div>
+
+</body>
+</html>
